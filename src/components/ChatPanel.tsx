@@ -40,20 +40,23 @@ export const ChatPanel = () => {
       const msg = e instanceof Error ? e.message : "Failed to get answer";
       toast.error(msg);
       setMessages((m) => [...m, { role: "assistant", content: `⚠️ ${msg}` }]);
+      setMessages((m) => [...m.slice(-30), messages[messages.length - 1]]); // keep last 30 messages
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="flex h-full flex-col rounded-2xl border border-border bg-card shadow-card">
+    // <div className="flex h-full flex-col rounded-2xl border border-border bg-card shadow-card">
+    <div className="flex h-[500px] flex-col rounded-2xl border border-border bg-card shadow-card">
+    
       <div className="flex items-center gap-2 border-b border-border px-5 py-4">
         <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/15 text-primary">
           <Sparkles className="h-4 w-4" />
         </div>
         <div>
           <p className="text-sm font-semibold text-foreground">Ask HydroSentinel</p>
-          <p className="text-xs text-muted-foreground">Powered by Lovable AI</p>
+          <p className="text-xs text-muted-foreground">Made by Nikhil kumar</p>
         </div>
       </div>
 
